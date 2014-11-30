@@ -56,11 +56,13 @@ if (numOfTrues==instance_number(obj_player))
           <argument>
             <kind>1</kind>
             <string>/// Start Spawing Player Objects   
-playerGreen = obj_player_green;
-playerRed = obj_player_red;
+green = obj_player_green;
+red = obj_player_red;
+blue=obj_player_blue;
 if (room==0) {
-    players[0]=instance_create(0,0,playerGreen);
-    players[1]=instance_create(room_width,0,playerRed);
+    players[0]=instance_create(0,0,green);
+    players[1]=instance_create(room_width,0,red);
+    players[2]=instance_create(room_width-100,300,red);
 }
 numOfPlayer = instance_number(obj_player);
 

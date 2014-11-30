@@ -8,6 +8,8 @@
   <sprites name="sprites">
     <sprite>sprites\spr_box_green</sprite>
     <sprite>sprites\spr_box_red</sprite>
+    <sprite>sprites\spr_box_blue</sprite>
+    <sprite>sprites\sprite3</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -18,6 +20,7 @@
     <objects name="players">
       <object>objects\obj_player</object>
       <object>objects\obj_player_red</object>
+      <object>objects\obj_player_blue</object>
       <object>objects\obj_player_green</object>
     </objects>
   </objects>
