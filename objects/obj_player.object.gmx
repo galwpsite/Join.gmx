@@ -26,12 +26,13 @@
           <argument>
             <kind>1</kind>
             <string>/// Defualt Parameter 
-movmentSpeed = 17;
+movementSpeed = 12;
 btnRight = ord("D");
 btnLeft = ord("A");
 btnUp = ord("W");
 btnDown = ord("S");
 colidWithAotherPlayer=false;
+color="null";
 </string>
           </argument>
         </arguments>
@@ -76,22 +77,56 @@ controller = instance_find(obj_controller,0);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Colid with another player object:
-o=collision_point(x, y, obj_player, false, true);
-if (o) {
-    colidWithAotherPlayer=true;
-    o.colidWithAotherPlayer=true;
-    with(controller) event_user(0);
-} 
-else {
-colidWithAotherPlayer = false;
+            <string>/// Movement Code:
+// Key check
+rightClicked= keyboard_check(btnRight);
+leftClicked = -keyboard_check(btnLeft);
+upClicked= keyboard_check(btnUp);
+downClicked = -keyboard_check(btnDown);
+
+hmove = rightClicked + leftClicked;
+vmove = upClicked +downClicked; 
+hsp = hmove*movementSpeed;
+vsp=vmove*movementSpeed; 
+nearestBlock = instance_nearest(x, y, obj_solid);
+
+if (place_meeting(x+hsp,y,obj_solid)){
+   if (nearestBlock.color !=color) {
+       while (!place_meeting(x+sign(hsp),y,obj_solid))
+             x+=sign(hsp);    
+        hsp=0; 
+        }
 }
+x+=hsp;
+
+if (place_meeting(x,y+vsp,obj_solid)){
+   if (nearestBlock.color !=color) { 
+   while (!place_meeting(x,y+sign(vsp),obj_solid))
+         y+=sign(vsp);    
+    vsp=0; 
+    }
+}
+
+x+=hsp;
+y+=vsp;
+
+
+//check if player gets out of the room borders
+if (x  &gt; room_width)
+    x=0;
+else 
+    if (x &lt; 0 )
+         x=room_width;
+if ( y &gt; room_height)
+    y=0;
+else
+    if (y &lt; 0)
+        y=room_height;
+//end of checking if player left the room borders
 </string>
           </argument>
         </arguments>
       </action>
-    </event>
-    <event eventtype="5" enumb="1">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -108,38 +143,16 @@ colidWithAotherPlayer = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Movement Code:
-// Key check
-currentKey = keyboard_key;
-if (keyboard_check(btnRight)){
-    x+=movmentSpeed;
+            <string>///Colid with another player object:
+o=collision_point(x, y, obj_player, false, true);
+if (o) {
+    colidWithAotherPlayer=true;
+    o.colidWithAotherPlayer=true;
+    with(controller) event_user(0);
+} 
+else {
+colidWithAotherPlayer = false;
 }
-else 
-    if (keyboard_check(btnLeft)){
-        x-=movmentSpeed;
-}
-
-else 
-    if (keyboard_check(btnUp)){
-        y-=movmentSpeed;
-}
-
-else
-    if (keyboard_check(btnDown)){
-        y+=movmentSpeed;
-}
-//check if player gets out of the room borders
-if (x  &gt; room_width)
-    x=0;
-else 
-    if (x &lt; 0 )
-         x=room_width;
-if ( y &gt; room_height)
-    y=0;
-else
-    if (y &lt; 0)
-        y=room_height;
-//end of checking if player left the room borders
 </string>
           </argument>
         </arguments>

@@ -25,12 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>numOfTrues=0;
+            <string>///check if the are no more player objecs
+numOfTrues=0;
 for (i = 0; i &lt; instance_number(obj_player); i += 1)
     if (instance_find(obj_player,i).colidWithAotherPlayer)
         numOfTrues++;
 if (numOfTrues==instance_number(obj_player))
-    show_debug_message("game over");
+    room_goto_next();
 
     
 </string>
@@ -60,9 +61,19 @@ green = obj_player_green;
 red = obj_player_red;
 blue=obj_player_blue;
 if (room==0) {
-    players[0]=instance_create(0,0,green);
-    players[1]=instance_create(room_width,0,red);
-    players[2]=instance_create(room_width-100,300,red);
+    players[0]=instance_create(190,84,green);
+    players[1]=instance_create(352,282,red);
+    players[2]=instance_create(672,300,red);
+}
+else if (room==1) {
+    players[0]=instance_create(96,96,green);
+    players[1]=instance_create(800,608,red);
+    players[2]=instance_create(160,244,red);
+}
+else if (room==2) {
+    players[0]=instance_create(96,96,green);
+    players[1]=instance_create(800,608,red);
+    players[2]=instance_create(160,244,red);
 }
 numOfPlayer = instance_number(obj_player);
 

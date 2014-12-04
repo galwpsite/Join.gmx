@@ -10,10 +10,14 @@
     <sprite>sprites\spr_box_red</sprite>
     <sprite>sprites\spr_box_blue</sprite>
     <sprite>sprites\sprite3</sprite>
+    <sprite>sprites\spr_border_black</sprite>
+    <sprite>sprites\spr_border_red</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
+    <object>objects\obj_border_black</object>
+    <object>objects\obj_border_red</object>
     <objects name="controllers">
       <object>objects\obj_controller</object>
     </objects>
@@ -23,9 +27,12 @@
       <object>objects\obj_player_blue</object>
       <object>objects\obj_player_green</object>
     </objects>
+    <object>objects\obj_solid</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\room0</room>
+    <room>rooms\room1</room>
+    <room>rooms\room2</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
